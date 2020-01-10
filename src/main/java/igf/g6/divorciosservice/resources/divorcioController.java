@@ -36,13 +36,13 @@ public class divorcioController {
         divorcioService.deleteDivorcio(id);
     }
 
-    @RequestMapping("divorcios/{nombre1Esposo}/{nombre2Esposo}/{apellido1Esposo}" +
-            "/{apellido2Esposo}/{nombre1Esposa}/{nombre2Esposa}/{apellido1Esposa}/{apellido2Esposa}")
-    public List<Divorcio> getMatrimoniosPorNombre(@PathVariable String nombre1Esposo,@PathVariable String nombre2Esposo,
-                                                    @PathVariable String apellido1Esposo, @PathVariable String apellido2Esposo,
-                                                  @PathVariable String nombre1Esposa,@PathVariable String nombre2Esposa,
-                                                  @PathVariable String apellido1Esposa, @PathVariable String apellido2Esposa){
-        return divorcioService.getDivorcioPorNombre(nombre1Esposo, nombre2Esposo, apellido1Esposo, apellido2Esposo, nombre1Esposa, nombre2Esposa, apellido1Esposa, apellido2Esposa);
+    @RequestMapping("divorcios/{primer_nombre}/{segundo_nombre}/{primer_apellido}" +
+            "/{segundo_apellido}")
+    public List<Divorcio> getMatrimoniosPorNombre(@PathVariable String primer_nombre,
+                                           @PathVariable String segundo_nombre,
+                                                    @PathVariable String primer_apellido, @PathVariable String segundo_apellido){
+        return divorcioService.getDivorcioPorNombre(primer_nombre, segundo_nombre, primer_apellido,
+                segundo_apellido);
     }
 
 }
