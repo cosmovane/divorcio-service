@@ -34,26 +34,25 @@ public class divorcioService {
         divorcioRepository.deleteById(Long.parseLong(id));
     }
 
-    public List<Divorcio> getDivorcioPorNombre(String nombre1Esposo, String nombre2Esposo,
-                                               String apellido1Esposo, String apellido2Esposo,
-                                               String nombre1Esposa, String nombre2Esposa,
-                                               String apellido1Esposa, String apellido2Esposa){
+    public List<Divorcio> getDivorcioPorNombre(String primer_nombre,
+                                               String segundo_nombre,
+                                                String primer_apellido, String segundo_apellido){
         List<Divorcio> divorcios = new ArrayList<>();
         divorcioRepository.findAll().forEach(divorcios::add);
-        List<Divorcio> divorciosEncontrados = new ArrayList<>();
+        List<Divorcio> divorcioEncontrado = new ArrayList<>();
 
         for (int i=0; i<divorcios.size(); i++){
-            if( (nombre1Esposa.equals(divorcios.get(i).getNombre1Esposa()) &&
-                    nombre1Esposo.equals(divorcios.get(i).getNombre1Esposo())
-                            && nombre2Esposa.equals(divorcios.get(i).getNombre2Esposa()) &&
-                    nombre2Esposo.equals(divorcios.get(i).getNombre1Esposo()) &&
-                            apellido1Esposa.equals(divorcios.get(i).getApellido1Esposa()) &&
-                    apellido1Esposo.equals(divorcios.get(i).getApellido1Esposo()) &&
-                            apellido2Esposa.equals(divorcios.get(i).getApellido2Esposa()) &&
-                    apellido2Esposo.equals(divorcios.get(i).getApellido2Esposo()))){
-                divorciosEncontrados.add(divorcios.get(i));
+            if( (primer_nombre.equals(divorcios.get(i).getNombre1Esposa()) ||
+                    primer_nombre.equals(divorcios.get(i).getNombre1Esposo()))
+                            && (segundo_nombre.equals(divorcios.get(i).getNombre2Esposa()) ||
+                    segundo_nombre.equals(divorcios.get(i).getNombre2Esposo())) &&
+                    (primer_apellido.equals(divorcios.get(i).getApellido1Esposa()) ||
+                    primer_apellido.equals(divorcios.get(i).getApellido1Esposo())) &&
+                    (segundo_apellido.equals(divorcios.get(i).getApellido2Esposa()) ||
+                    segundo_apellido.equals(divorcios.get(i).getApellido2Esposo()))){
+                divorcioEncontrado.add(divorcios.get(i));
             }
         }
-        return divorciosEncontrados;
+        return divorcioEncontrado;
     }
 }
